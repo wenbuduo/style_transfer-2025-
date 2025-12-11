@@ -46,15 +46,11 @@ neural_style_transfer/
 ├── inference.py                # 推理脚本
 ├── evaluate.py                 # 评估脚本
 └── compare_results.py          # 结果对比
-
+```
 ## 运行步骤
 
 ### 1. 环境配置
 ### 2. 下载数据
-```bash
-bash download_data.sh
-```
-
 ### 3. 训练baseline模型
 ```bash
 # 训练Gatys (无需训练，直接优化)
