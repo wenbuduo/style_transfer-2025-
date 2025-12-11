@@ -1,0 +1,32 @@
+# 核心依赖
+torch>=1.8.0
+torchvision>=0.9.0
+numpy>=1.19.0
+Pillow>=8.0.0
+scipy>=1.5.0
+
+# 数据处理
+opencv-python>=4.5.0
+scikit-image>=0.18.0
+matplotlib>=3.3.0
+tqdm>=4.50.0
+
+# 评估指标
+lpips>=0.1.4
+pytorch-fid>=0.2.0
+
+# 工具
+pyyaml>=5.4.0
+tensorboard>=2.5.0
+
+# 可选: StyleID依赖 (如果使用StyleID)
+# diffusers>=0.11.0
+# transformers>=4.20.0
+# accelerate>=0.12.0
+# omegaconf>=2.1.0
+# einops>=0.4.0
+# pytorch-lightning>=1.6.0
+
+# 数据下载
+requests>=2.25.0
+beautifulsoup4>=4.9.0
