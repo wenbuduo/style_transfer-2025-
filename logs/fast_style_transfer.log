@@ -1,0 +1,59 @@
+PS E:\studycode\style_transfer> python train_baselines.py --model fast_style_transfer --content_dir data/content/train --style_dir data/style/Baroque --style_name baroque --epochs 2 --batch_size 16 --image_size 256 --lr 1e-4 --num_workers 4 --checkpoint_dir checkpoints --log_dir logs --save_interval 1 --log_interval 100
+==================================================
+训练Fast Style Transfer
+==================================================
+使用设备: cuda
+找到 7000 张图像在 data/content/train
+找到 300 张图像在 data/style/Baroque
+E:\anaconda\envs\style_transfer\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+E:\anaconda\envs\style_transfer\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG19_Weights.IMAGENET1K_V1`. You can also use `weights=VGG19_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Epoch 1/2: 100%|█████████████████████████████████| 19/19 [07:34<00:00, 23.93s/it, loss=2.76, content=0.94, style=1.82]
+Epoch 1 平均损失: 2.32
+模型已保存到: checkpoints\fast_style_transfer\baroque_epoch_1.pth
+模型已保存: checkpoints\fast_style_transfer\baroque_epoch_1.pth
+Epoch 2/2: 100%|█████████████████████████████████| 19/19 [07:37<00:00, 24.10s/it, loss=1.82, content=0.82, style=1.00]
+Epoch 2 平均损失: 1.95
+模型已保存到: checkpoints\fast_style_transfer\baroque_epoch_2.pth
+模型已保存: checkpoints\fast_style_transfer\baroque_epoch_2.pth
+模型已保存到: checkpoints\fast_style_transfer\baroque_final.pth
+训练完成! 最终模型: checkpoints\fast_style_transfer\baroque_final.pth
+
+2025/12/9 00:36
+PS E:\studycode\style_transfer> python train_baselines.py `
+>>     --model fast_style_transfer `
+>>     --content_dir data/content/train `
+>>     --style_dir data/baroque `
+>>     --style_name baroque `
+>>     --epochs 2 `
+>>     --batch_size 16 `
+>>     --image_size 256 `
+>>     --lr 1e-4 `
+>>     --num_workers 4 `
+>>     --checkpoint_dir checkpoints `
+>>     --log_dir logs `
+>>     --save_interval 1 `
+>>     --log_interval 100
+==================================================
+训练Fast Style Transfer
+==================================================
+使用设备: cuda
+找到 7000 张图像在 data/content/train
+找到 2 张图像在 data/baroque
+E:\anaconda\envs\style_transfer\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+E:\anaconda\envs\style_transfer\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a
+ weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior i
+s equivalent to passing `weights=VGG19_Weights.IMAGENET1K_V1`. You can also use `weights=VGG19_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Epoch 1/2: 100%|███████████████████████████████████| 1/1 [00:24<00:00, 24.52s/it, loss=3.28, content=0.87, style=2.41]
+Epoch 1 平均损失: 3.28
+模型已保存到: checkpoints\fast_style_transfer\baroque_epoch_1.pth
+模型已保存: checkpoints\fast_style_transfer\baroque_epoch_1.pth
+Epoch 2/2: 100%|███████████████████████████████████| 1/1 [00:23<00:00, 23.02s/it, loss=2.28, content=0.88, style=1.40]
+Epoch 2 平均损失: 2.28
+模型已保存到: checkpoints\fast_style_transfer\baroque_epoch_2.pth
+模型已保存: checkpoints\fast_style_transfer\baroque_epoch_2.pth
+模型已保存到: checkpoints\fast_style_transfer\baroque_final.pth
+训练完成! 最终模型: checkpoints\fast_style_transfer\baroque_final.pth

@@ -1,0 +1,408 @@
+E:\anaconda\envs\style_transfer\python.exe E:/studycode/style_transfer/run_styleid.py
+======================================================================
+StyleID 风格迁移
+======================================================================
+
+[1/4] 加载模型...
+Seed set to 42
+正在加载模型: models_weights/sd-v1-4.ckpt
+  全局步数: 470000
+LatentDiffusion: Running in eps-prediction mode
+DiffusionWrapper has 859.52 M params.
+making attention of type 'vanilla' with 512 in_channels
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+making attention of type 'vanilla' with 512 in_channels
+模型加载完成
+使用设备: cuda
+
+[2/4] 初始化采样器...
+
+[2.5/4] 计算无条件文本嵌入...
+
+[3/4] 扫描图像...
+找到 4 张内容图像
+找到 6 张风格图像
+总共需要生成 24 张图像
+
+[4/4] 开始风格迁移...
+======================================================================
+
+风格图像 [1/6]: Baroque_0001.jpg
+----------------------------------------------------------------------
+  加载图像: Baroque_0001.jpg, 原始尺寸 (1710, 1382)
+
+  内容图像 [1/4]: 000000000632.jpg
+  加载图像: 000000000632.jpg, 原始尺寸 (640, 483)
+提取风格特征...
+  编码图像...
+Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:32<00:00,  1.53it/s]
+  保存特征缓存: Baroque_0001_sty.pkl
+提取内容特征...
+  编码图像...
+Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:10<00:00,  4.93it/s]
+  保存特征缓存: 000000000632_cnt.pkl
+生成风格迁移图像...
+Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:07<00:00,  7.14it/s]
+  保存: 000000000632_stylized_Baroque_0001.png
+
+  内容图像 [2/4]: 000000000724.jpg
+  加载图像: 000000000724.jpg, 原始尺寸 (375, 500)
+提取风格特征...
+  加载缓存特征: Baroque_0001_sty.pkl
+提取内容特征...
+  编码图像...
+DDIM Inversion:   0%|          | 0/50 [00:00<?, ?it/s]Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:07<00:00,  6.79it/s]
+  保存特征缓存: 000000000724_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:07<00:00,  6.46it/s]
+  保存: 000000000724_stylized_Baroque_0001.png
+
+  内容图像 [3/4]: 000000000776.jpg
+  加载图像: 000000000776.jpg, 原始尺寸 (428, 640)
+提取风格特征...
+  加载缓存特征: Baroque_0001_sty.pkl
+提取内容特征...
+  编码图像...
+Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:08<00:00,  5.71it/s]
+  保存特征缓存: 000000000776_cnt.pkl
+生成风格迁移图像...
+Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:08<00:00,  5.89it/s]
+  保存: 000000000776_stylized_Baroque_0001.png
+
+  内容图像 [4/4]: 000000000885.jpg
+  加载图像: 000000000885.jpg, 原始尺寸 (640, 427)
+提取风格特征...
+  加载缓存特征: Baroque_0001_sty.pkl
+提取内容特征...
+  编码图像...
+DDIM Inversion:   0%|          | 0/50 [00:00<?, ?it/s]Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:08<00:00,  5.97it/s]
+  保存特征缓存: 000000000885_cnt.pkl
+生成风格迁移图像...
+Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:06<00:00,  7.20it/s]
+  保存: 000000000885_stylized_Baroque_0001.png
+
+风格图像 [2/6]: Expressionism_0001.jpg
+----------------------------------------------------------------------
+  加载图像: Expressionism_0001.jpg, 原始尺寸 (750, 597)
+
+  内容图像 [1/4]: 000000000632.jpg
+  加载图像: 000000000632.jpg, 原始尺寸 (640, 483)
+提取风格特征...
+  编码图像...
+Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:06<00:00,  8.26it/s]
+  保存特征缓存: Expressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000632_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:09<00:00,  5.52it/s]
+  保存: 000000000632_stylized_Expressionism_0001.png
+
+  内容图像 [2/4]: 000000000724.jpg
+  加载图像: 000000000724.jpg, 原始尺寸 (375, 500)
+提取风格特征...
+  加载缓存特征: Expressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000724_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:07<00:00,  6.26it/s]
+  保存: 000000000724_stylized_Expressionism_0001.png
+
+  内容图像 [3/4]: 000000000776.jpg
+  加载图像: 000000000776.jpg, 原始尺寸 (428, 640)
+提取风格特征...
+  加载缓存特征: Expressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000776_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:07<00:00,  6.98it/s]
+  保存: 000000000776_stylized_Expressionism_0001.png
+
+  内容图像 [4/4]: 000000000885.jpg
+  加载图像: 000000000885.jpg, 原始尺寸 (640, 427)
+提取风格特征...
+  加载缓存特征: Expressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000885_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:09<00:00,  5.41it/s]
+  保存: 000000000885_stylized_Expressionism_0001.png
+
+风格图像 [3/6]: Impressionism_0001.jpg
+----------------------------------------------------------------------
+  加载图像: Impressionism_0001.jpg, 原始尺寸 (1382, 1673)
+
+  内容图像 [1/4]: 000000000632.jpg
+  加载图像: 000000000632.jpg, 原始尺寸 (640, 483)
+提取风格特征...
+  编码图像...
+Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:30<00:00,  1.63it/s]
+  保存特征缓存: Impressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000632_cnt.pkl
+生成风格迁移图像...
+Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:25<00:00,  1.94it/s]
+  保存: 000000000632_stylized_Impressionism_0001.png
+
+  内容图像 [2/4]: 000000000724.jpg
+  加载图像: 000000000724.jpg, 原始尺寸 (375, 500)
+提取风格特征...
+  加载缓存特征: Impressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000724_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:26<00:00,  1.91it/s]
+  保存: 000000000724_stylized_Impressionism_0001.png
+
+  内容图像 [3/4]: 000000000776.jpg
+  加载图像: 000000000776.jpg, 原始尺寸 (428, 640)
+提取风格特征...
+  加载缓存特征: Impressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000776_cnt.pkl
+生成风格迁移图像...
+Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:27<00:00,  1.82it/s]
+  保存: 000000000776_stylized_Impressionism_0001.png
+
+  内容图像 [4/4]: 000000000885.jpg
+  加载图像: 000000000885.jpg, 原始尺寸 (640, 427)
+提取风格特征...
+  加载缓存特征: Impressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000885_cnt.pkl
+生成风格迁移图像...
+Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:29<00:00,  1.71it/s]
+  保存: 000000000885_stylized_Impressionism_0001.png
+
+风格图像 [4/6]: Post-Impressionism_0001.jpg
+----------------------------------------------------------------------
+  加载图像: Post-Impressionism_0001.jpg, 原始尺寸 (1965, 1382)
+
+  内容图像 [1/4]: 000000000632.jpg
+  加载图像: 000000000632.jpg, 原始尺寸 (640, 483)
+提取风格特征...
+  编码图像...
+DDIM Inversion:   0%|          | 0/50 [00:00<?, ?it/s]Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:16<00:00,  3.01it/s]
+  保存特征缓存: Post-Impressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000632_cnt.pkl
+生成风格迁移图像...
+Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:09<00:00,  5.00it/s]
+  保存: 000000000632_stylized_Post-Impressionism_0001.png
+
+  内容图像 [2/4]: 000000000724.jpg
+  加载图像: 000000000724.jpg, 原始尺寸 (375, 500)
+提取风格特征...
+  加载缓存特征: Post-Impressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000724_cnt.pkl
+生成风格迁移图像...
+Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:27<00:00,  1.84it/s]
+  保存: 000000000724_stylized_Post-Impressionism_0001.png
+
+  内容图像 [3/4]: 000000000776.jpg
+  加载图像: 000000000776.jpg, 原始尺寸 (428, 640)
+提取风格特征...
+  加载缓存特征: Post-Impressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000776_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:27<00:00,  1.83it/s]
+  保存: 000000000776_stylized_Post-Impressionism_0001.png
+
+  内容图像 [4/4]: 000000000885.jpg
+  加载图像: 000000000885.jpg, 原始尺寸 (640, 427)
+提取风格特征...
+  加载缓存特征: Post-Impressionism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000885_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:26<00:00,  1.90it/s]
+  保存: 000000000885_stylized_Post-Impressionism_0001.png
+
+风格图像 [5/6]: Realism_0001.jpg
+----------------------------------------------------------------------
+  加载图像: Realism_0001.jpg, 原始尺寸 (1472, 1382)
+
+  内容图像 [1/4]: 000000000632.jpg
+  加载图像: 000000000632.jpg, 原始尺寸 (640, 483)
+提取风格特征...
+  编码图像...
+DDIM Inversion:   0%|          | 0/50 [00:00<?, ?it/s]Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:29<00:00,  1.69it/s]
+  保存特征缓存: Realism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000632_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:26<00:00,  1.86it/s]
+  保存: 000000000632_stylized_Realism_0001.png
+
+  内容图像 [2/4]: 000000000724.jpg
+  加载图像: 000000000724.jpg, 原始尺寸 (375, 500)
+提取风格特征...
+  加载缓存特征: Realism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000724_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:26<00:00,  1.88it/s]
+  保存: 000000000724_stylized_Realism_0001.png
+
+  内容图像 [3/4]: 000000000776.jpg
+  加载图像: 000000000776.jpg, 原始尺寸 (428, 640)
+提取风格特征...
+  加载缓存特征: Realism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000776_cnt.pkl
+生成风格迁移图像...
+Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:26<00:00,  1.88it/s]
+  保存: 000000000776_stylized_Realism_0001.png
+
+  内容图像 [4/4]: 000000000885.jpg
+  加载图像: 000000000885.jpg, 原始尺寸 (640, 427)
+提取风格特征...
+  加载缓存特征: Realism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000885_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:28<00:00,  1.75it/s]
+  保存: 000000000885_stylized_Realism_0001.png
+
+风格图像 [6/6]: Romanticism_0001.jpg
+----------------------------------------------------------------------
+  加载图像: Romanticism_0001.jpg, 原始尺寸 (1423, 1382)
+
+  内容图像 [1/4]: 000000000632.jpg
+  加载图像: 000000000632.jpg, 原始尺寸 (640, 483)
+提取风格特征...
+  编码图像...
+DDIM Inversion:   0%|          | 0/50 [00:00<?, ?it/s]Running DDIM inversion with 50 timesteps
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+DDIM Inversion: 100%|██████████| 50/50 [00:30<00:00,  1.63it/s]
+  保存特征缓存: Romanticism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000632_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:26<00:00,  1.90it/s]
+  保存: 000000000632_stylized_Romanticism_0001.png
+
+  内容图像 [2/4]: 000000000724.jpg
+  加载图像: 000000000724.jpg, 原始尺寸 (375, 500)
+提取风格特征...
+  加载缓存特征: Romanticism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000724_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:22<00:00,  2.20it/s]
+  保存: 000000000724_stylized_Romanticism_0001.png
+
+  内容图像 [3/4]: 000000000776.jpg
+  加载图像: 000000000776.jpg, 原始尺寸 (428, 640)
+提取风格特征...
+  加载缓存特征: Romanticism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000776_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:07<00:00,  6.78it/s]
+  保存: 000000000776_stylized_Romanticism_0001.png
+
+  内容图像 [4/4]: 000000000885.jpg
+  加载图像: 000000000885.jpg, 原始尺寸 (640, 427)
+提取风格特征...
+  加载缓存特征: Romanticism_0001_sty.pkl
+提取内容特征...
+  加载缓存特征: 000000000885_cnt.pkl
+生成风格迁移图像...
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]Data shape for DDIM sampling is (1, 4, 32, 32), eta 0.0
+Running DDIM Sampling with 50 timesteps
+DDIM Sampler: 100%|██████████| 50/50 [00:26<00:00,  1.92it/s]
+  保存: 000000000885_stylized_Romanticism_0001.png
+
+======================================================================
+完成! 总共生成 24 张图像
+总耗时: 709.65 秒 (平均 29.57 秒/张)
+输出目录: styleid_output
+======================================================================
+
+Process finished with exit code 0
