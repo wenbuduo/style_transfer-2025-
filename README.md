@@ -13,8 +13,8 @@
 
 ### 轻量级方案 (推荐) ⭐
 - **自动生成**: 0MB, 立即可用 (方案1)
-- **COCO样本**: 50张, 约50MB (方案2)
-- **详见**: `MINI_DATASET_GUIDE.md`
+- **COCO样本**: 随机下载一万张 (方案2)
+- **风格样本**: 随机挑选6种风格 (方案3)
 
 ### 完整数据集 (可选)
 - **内容图**: COCO2017 (~20GB)
@@ -33,8 +33,6 @@
 neural_style_transfer/
 ├── README.md                    # 项目说明
 ├── requirements.txt             # 依赖包
-├── setup.sh                     # 环境设置脚本
-├── download_data.sh             # 数据下载脚本
 ├── models/                      # 模型实现
 │   ├── gatys.py                # Gatys模型
 │   ├── fast_style_transfer.py  # Fast Style Transfer
@@ -52,10 +50,6 @@ neural_style_transfer/
 ## 运行步骤
 
 ### 1. 环境配置
-```bash
-bash setup.sh
-```
-
 ### 2. 下载数据
 ```bash
 bash download_data.sh
