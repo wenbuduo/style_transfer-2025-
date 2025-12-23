@@ -3,10 +3,11 @@ from PIL import Image, ImageDraw, ImageFont
 
 # ====== 配置 ======
 styleid_dir = "styleid_output"  # StyleID 结果文件夹
-content_dir = "data/test2"   # 原始内容图像所在文件夹
-output_path = "styleid_grid_4x6_with_content.png"
+content_dir = "data/test2"      # 原始内容图像所在文件夹
+style_ref_path = "data/test/style2"  # 你的风格参考图路径（请修改为实际路径）
+output_path = "imgs/styleid_grid_4x6_with_style_col.png"
 
-# 列顺序：第 0 列是原图，后面是 6 种风格
+# 列顺序：第0列=原图，第1列=风格参考图，后面是6种风格迁移结果
 style_order = [
     "Baroque",
     "Expressionism",
@@ -16,9 +17,10 @@ style_order = [
     "Romanticism",
 ]
 
-# 标题栏文字（按列顺序）
+# 标题栏文字（按列顺序：原图 → 风格参考 → 各风格迁移结果）
 header_labels = [
     "Content",
+    "Style Ref",  # 新增风格参考列标题
     "Baroque",
     "Expressionism",
     "Impressionism",
@@ -54,12 +56,16 @@ for fname in os.listdir(content_dir):
     stem = os.path.splitext(fname)[0]  # 去掉扩展名
     original_dict[stem] = os.path.join(content_dir, fname)
 
-# ====== 3. 选取 4 个 content_id（行） ======
+# ====== 3. 验证风格参考图是否存在 ======
+if not os.path.exists(style_ref_path):
+    raise RuntimeError(f"风格参考图不存在，请检查路径：{style_ref_path}")
+
+# ====== 4. 选取 4 个 content_id（行） ======
 content_ids = sorted(stylized_dict.keys())[:4]
 if len(content_ids) < 4:
     print("警告：内容图不足 4 个，实际只有:", len(content_ids))
 
-# ====== 4. 用一张图确定单元格尺寸 ======
+# ====== 5. 用一张图确定单元格尺寸 ======
 sample_img_path = None
 for cid in content_ids:
     # 优先用 stylized 图的尺寸
@@ -76,11 +82,11 @@ if sample_img_path is None:
 sample_img = Image.open(sample_img_path)
 cell_w, cell_h = sample_img.size
 
-rows = len(content_ids)          # 一般为 4 行
-cols = 1 + len(style_order)      # 1 列原图 + 6 列风格 = 7 列
-header_h = int(0.25 * cell_h)    # 标题栏高度，可以按需要调整
+rows = len(content_ids)                          # 一般为 4 行
+cols = 1 + 1 + len(style_order)                  # 1列原图 + 1列风格参考 + 6列风格 = 8列
+header_h = int(0.25 * cell_h)                    # 标题栏高度，可以按需要调整
 
-# ====== 5. 创建大画布 ======
+# ====== 6. 创建大画布 ======
 grid_w = cols * cell_w
 grid_h = header_h + rows * cell_h
 grid_img = Image.new("RGB", (grid_w, grid_h), color=(255, 255, 255))
@@ -93,7 +99,7 @@ try:
 except:
     font = ImageFont.load_default()
 
-# ====== 6. 画标题栏 ======
+# ====== 7. 画标题栏 ======
 for col_idx, label in enumerate(header_labels):
     x0 = col_idx * cell_w
     x1 = x0 + cell_w
@@ -112,13 +118,15 @@ for col_idx, label in enumerate(header_labels):
     text_y = y0 + (header_h - text_h) // 2
     draw.text((text_x, text_y), label, fill=(0, 0, 0), font=font)
 
+# ====== 8. 加载风格参考图（统一尺寸） ======
+style_ref_img = Image.open(style_ref_path).resize((cell_w, cell_h))
 
-# ====== 7. 逐格粘贴原图 + 风格图 ======
+# ====== 9. 逐格粘贴原图 + 风格参考图 + 风格迁移图 ======
 for row_idx, cid in enumerate(content_ids):
     # 当前行左上角 y 坐标（跳过标题栏）
     base_y = header_h + row_idx * cell_h
 
-    # 7.1 原图（第 0 列）
+    # 9.1 原图（第 0 列）
     orig_path = None
     if cid in original_dict:
         orig_path = original_dict[cid]
@@ -130,8 +138,12 @@ for row_idx, cid in enumerate(content_ids):
         orig_img = Image.open(orig_path).resize((cell_w, cell_h))
         grid_img.paste(orig_img, (0, base_y))
 
-    # 7.2 各种风格（第 1~6 列）
-    for col_idx, style_name in enumerate(style_order, start=1):
+    # 9.2 风格参考图（第 1 列，第二列，所有行共用同一张）
+    style_ref_x = 1 * cell_w
+    grid_img.paste(style_ref_img, (style_ref_x, base_y))
+
+    # 9.3 各种风格迁移结果（第 2~7 列，偏移一列）
+    for col_idx, style_name in enumerate(style_order, start=2):
         path = stylized_dict[cid].get(style_name, None)
         if path is None:
             print(f"缺失: content_id={cid}, style={style_name}")
@@ -141,6 +153,6 @@ for row_idx, cid in enumerate(content_ids):
         y = base_y
         grid_img.paste(img, (x, y))
 
-# ====== 8. 保存 ======
+# ====== 10. 保存 ======
 grid_img.save(output_path)
 print("合成完成，保存到:", output_path)

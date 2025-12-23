@@ -4,7 +4,8 @@ from PIL import Image, ImageDraw, ImageFont
 # ====== 配置 ======
 content_dir = "data/content/test1"   # 原图目录
 results_root = "results"            # 四个模型结果的根目录
-output_path = "grid_4x5_models_with_content.png"
+style_ref_path = "data/test/style/Baroque_0001.jpg"  # 风格参考图路径（请修改为实际路径）
+output_path = "imgs/grid_4x5_models_with_content_and_style.png"
 
 # 列顺序与标题
 model_folders = [
@@ -14,8 +15,10 @@ model_folders = [
     ("styleid", "StyleID"),
 ]
 
+# 标题栏文字：原图 → 风格参考 → 各模型
 header_labels = [
-    "Content(原图)",
+    "Content",
+    "Style ",  # 新增风格参考列标题
     "Gatys",
     "Fast-ST",
     "AdaIN",
@@ -62,7 +65,11 @@ for folder_name, label in model_folders:
             overall_dict[content_id] = {}
         overall_dict[content_id][label] = os.path.join(model_dir, fname)
 
-# ====== 3. 选取有原图的 content_id 并排序，取前 4 个 ======
+# ====== 3. 验证风格参考图是否存在 ======
+if not os.path.exists(style_ref_path):
+    raise RuntimeError(f"风格参考图不存在，请检查路径：{style_ref_path}")
+
+# ====== 4. 选取有原图的 content_id 并排序，取前 4 个 ======
 content_ids = sorted(
     [cid for cid in overall_dict.keys() if "Content" in overall_dict[cid]]
 )[:4]
@@ -73,7 +80,7 @@ if len(content_ids) < 4:
 if not content_ids:
     raise RuntimeError("没有找到任何 content_id，请检查目录和文件名。")
 
-# ====== 4. 用一张图确定单元格尺寸 ======
+# ====== 5. 用一张图确定单元格尺寸 ======
 sample_path = None
 for cid in content_ids:
     # 优先找原图
@@ -94,11 +101,11 @@ if sample_path is None:
 sample_img = Image.open(sample_path)
 cell_w, cell_h = sample_img.size
 
-rows = len(content_ids)          # 4 行
-cols = 1 + len(model_folders)    # 1 原图 + 4 模型 = 5 列
-header_h = int(0.25 * cell_h)    # 标题栏高度
+rows = len(content_ids)                          # 4 行
+cols = 1 + 1 + len(model_folders)                # 1原图 + 1风格参考 + 4模型 = 6 列
+header_h = int(0.25 * cell_h)                    # 标题栏高度
 
-# ====== 5. 创建大画布 ======
+# ====== 6. 创建大画布 ======
 grid_w = cols * cell_w
 grid_h = header_h + rows * cell_h
 grid_img = Image.new("RGB", (grid_w, grid_h), color=(255, 255, 255))
@@ -110,7 +117,7 @@ try:
 except:
     font = ImageFont.load_default()
 
-# ====== 6. 画标题栏 ======
+# ====== 7. 画标题栏 ======
 for col_idx, label in enumerate(header_labels):
     x0 = col_idx * cell_w
     x1 = x0 + cell_w
@@ -130,19 +137,26 @@ for col_idx, label in enumerate(header_labels):
 
     draw.text((text_x, text_y), label, fill=(0, 0, 0), font=font)
 
-# ====== 7. 逐格粘贴每一行：原图 + 4 个模型 ======
+# ====== 8. 加载风格参考图（统一尺寸） ======
+style_ref_img = Image.open(style_ref_path).resize((cell_w, cell_h))
+
+# ====== 9. 逐格粘贴每一行：原图 + 风格参考图 + 4 个模型 ======
 for row_idx, cid in enumerate(content_ids):
     base_y = header_h + row_idx * cell_h
 
-    # 7.1 原图（第 0 列）
+    # 9.1 原图（第 0 列）
     if "Content" in overall_dict[cid]:
         orig_img = Image.open(overall_dict[cid]["Content"]).resize((cell_w, cell_h))
         grid_img.paste(orig_img, (0, base_y))
     else:
         print(f"content_id={cid} 的原图缺失")
 
-    # 7.2 四个模型结果（第 1~4 列）
-    for col_idx, (folder_name, label) in enumerate(model_folders, start=1):
+    # 9.2 风格参考图（第 1 列，第二列，所有行共用同一张）
+    style_ref_x = 1 * cell_w
+    grid_img.paste(style_ref_img, (style_ref_x, base_y))
+
+    # 9.3 四个模型结果（第 2~5 列，偏移一列）
+    for col_idx, (folder_name, label) in enumerate(model_folders, start=2):
         path = overall_dict[cid].get(label, None)
         if path is None:
             print(f"缺失: content_id={cid}, model={label}")
@@ -152,6 +166,6 @@ for row_idx, cid in enumerate(content_ids):
         y = base_y
         grid_img.paste(img, (x, y))
 
-# ====== 8. 保存 ======
+# ====== 10. 保存 ======
 grid_img.save(output_path)
 print("合成完成，保存到:", output_path)
